@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: self-hosted   # Runs on your VM's self-hosted runner
+    runs-on: self-hosted   # Run directly on your VM
 
     steps:
     - name: Checkout
@@ -29,16 +29,14 @@ jobs:
     - name: Train model
       run: python train_model.py
 
-    - name: Build Docker
+    - name: Build Docker container
       run: docker build -t mlops-app .
 
-    - name: Deploy to VM
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.VM_SSH_KEY }}
-        script: |
-          docker stop mlops-app || true
-          docker rm mlops-app || true
-          docker run -d -p 5000:5000 mlops-app
+    - name: Stop old container
+      run: docker stop mlops-app || true
+
+    - name: Remove old container
+      run: docker rm mlops-app || true
+
+    - name: Run new container
+      run: docker run -d -p 5000:5000 mlops-app
