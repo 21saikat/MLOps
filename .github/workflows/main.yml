@@ -20,6 +20,9 @@ jobs:
     - name: Install dependencies
       run: pip install pandas scikit-learn flask
 
+    - name: Generate synthetic dataset
+      run: python data.py
+
     - name: Train model
       run: python train_model.py
 
@@ -36,4 +39,3 @@ jobs:
           docker stop mlops-app || true
           docker rm mlops-app || true
           docker run -d -p 5000:5000 mlops-app
-
