@@ -95,10 +95,13 @@ Environment	Self-hosted Runner (VM)
 ✅ Model serving via REST API
 ✅ Practical hands-on AI workflow automation
 
+
 📘 Author
 
-Abu Jor Al Gefari (Ibne Sabid Saikat)
+Ibne Sabid Saikat ( Abu Jor Al Gefari )
 🚀 Microsoft Student Ambassador | AZ-104 Certified | Cloud & DevOps Enthusiast
 🔗 Medium Article
+
+
 
 ⭐ If you found this helpful, give this repo a star!
